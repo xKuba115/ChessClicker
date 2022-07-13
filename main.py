@@ -24,6 +24,7 @@ screen.blit(pawn, (50, 400))
 rook=pygame.image.load('rook.png')
 bishop=pygame.image.load('bishop.png')
 knight=pygame.image.load('knight.png')
+clickclick=pygame.image.load('clickclick.png')
 screen.blit(rook, (50, 500))
 screen.blit(bishop, (50, 600))
 screen.blit(knight, (50, 700))
@@ -50,13 +51,13 @@ def DrawText(text, Textcolor, Rectcolor, x, y, fsize):
     textRect = text.get_rect()
     textRect.center = (x, y)
     screen.blit(text, textRect)
-def waitFor(waitTime): # waitTime in milliseconds
+def waitFor(waitTime): 
     screenCopy = screen.copy()
     waitCount = 0
     while waitCount < waitTime:
-        dt = clock.tick(60) # 60 is your FPS here
+        dt = clock.tick(60) 
         waitCount += dt
-        pygame.event.pump() # Tells pygame to handle it's event, instead of pygame.event.get() 
+        pygame.event.pump()
         screen.blit(screenCopy, (0,0))
         pygame.display.flip()
 
@@ -111,7 +112,7 @@ def main_loop():
                     check=check+multiply
 
                     screenCopy = screen.copy()
-                    DrawText(" klik ", black, backgroundColour,x, y, 11)
+                    screen.blit(clickclick, (x, y-40))
                     waitFor(150)
                     screen.blit(screenCopy, (0,0))
 
