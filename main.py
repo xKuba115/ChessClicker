@@ -50,6 +50,15 @@ def DrawText(text, Textcolor, Rectcolor, x, y, fsize):
     textRect = text.get_rect()
     textRect.center = (x, y)
     screen.blit(text, textRect)
+def waitFor(waitTime): # waitTime in milliseconds
+    screenCopy = screen.copy()
+    waitCount = 0
+    while waitCount < waitTime:
+        dt = clock.tick(60) # 60 is your FPS here
+        waitCount += dt
+        pygame.event.pump() # Tells pygame to handle it's event, instead of pygame.event.get() 
+        screen.blit(screenCopy, (0,0))
+        pygame.display.flip()
 
 def AutoChecks():
     global check
@@ -82,6 +91,7 @@ def main_loop():
     global knightPrice
     global knightLevel
     global knightPriceMultiply
+    global screenCopy
 
 
     while running:
@@ -99,6 +109,11 @@ def main_loop():
                 if click.get_rect().collidepoint(x-(X/2 - 200), y-100):
                     pygame.display.update()
                     check=check+multiply
+
+                    screenCopy = screen.copy()
+                    DrawText(" klik ", black, backgroundColour,x, y, 11)
+                    waitFor(150)
+                    screen.blit(screenCopy, (0,0))
 
 
                 if pawn.get_rect().collidepoint(x-50,y-400):
