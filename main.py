@@ -1,5 +1,6 @@
 import pygame
 import time
+import json
 
 pygame.init()
 backgroundColour = (44, 82, 55)
@@ -13,6 +14,9 @@ pygame.display.set_caption('ChessClicker')
 screen.fill(backgroundColour)
 click=pygame.image.load('click.png')
 click = pygame. transform. scale(click, (200, 200))
+reset=pygame.image.load('reset.png')
+reset = pygame. transform. scale(reset, (100, 100))
+screen.blit(reset,(700,700))
 screen.blit(click, (x, y))
 check =0 
 pygame.display.flip()
@@ -44,6 +48,41 @@ bishopPriceMultiply = 1.8
 knightPrice = 2200
 knightLevel = 0
 knightPriceMultiply = 3
+
+with open('score.txt') as scoreFile:
+    check=json.load(scoreFile)
+with open('pawnMultiply.txt') as pawnMultiplyFile:
+    pawnMultiply=json.load(pawnMultiplyFile)
+with open('autoC.txt') as autoCFile:
+    autoC=json.load(autoCFile)
+with open('rookPriceMultiply.txt') as rookPriceMultiplyFile:
+    rookPriceMultiply=json.load(rookPriceMultiplyFile)
+with open('rookLevel.txt') as rookLevelFile:
+    rookLevel=json.load(rookLevelFile)
+with open('rookPrice.txt') as rookPriceFile:
+    rookPrice=json.load(rookPriceFile)
+with open('pawnPriceMultiply.txt') as pawnPriceMultiplyFile:
+    pawnPriceMultiply=json.load(pawnPriceMultiplyFile)
+with open('pawnLevel.txt') as pawnLevelFile:
+    pawnLevel=json.load(pawnLevelFile)
+with open('pawnPrice.txt') as pawnPriceFile:
+    pawnPrice=json.load(pawnPriceFile)
+with open('multiply.txt') as multiplyFile:
+    multiply=json.load(multiplyFile)
+with open('bishopLevel.txt') as bishopLevelFile:
+    bishopLevel=json.load(bishopLevelFile)
+with open('bishopPriceMultiply.txt') as bishopPriceMultiplyFile:
+    bishopPriceMultiply=json.load(bishopPriceMultiplyFile)
+with open('bishopPrice.txt') as bishopPriceFile:
+    bishopPrice=json.load(bishopPriceFile)
+with open('knightPrice.txt') as knightPriceFile:
+    knightPrice=json.load(knightPriceFile)
+with open('knightLevel.txt') as knightLevelFile:
+    knightLevel=json.load(knightLevelFile)
+with open('knightPriceMultiply.txt') as knightPriceMultiplyFile:
+    knightPriceMultiply=json.load(knightPriceMultiplyFile)
+with open('pawnPriceMultiply.txt') as pawnPriceMultiplyFile:
+    pawnPriceMultiply=json.load(pawnPriceMultiplyFile)
 
 def DrawText(text, Textcolor, Rectcolor, x, y, fsize):
     font = pygame.font.Font('czcionka.ttf', fsize)
@@ -102,6 +141,56 @@ def main_loop():
     
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                with open('score.txt','w') as scoreFile:
+                    json.dump(check,scoreFile)
+            if event.type == pygame.QUIT:
+                with open('autoCmultiply.txt','w') as autoCmultiplyFile:
+                    json.dump(autoCmultiply,autoCmultiplyFile)
+            if event.type == pygame.QUIT:
+                with open('autoC.txt','w') as autoCFile:
+                    json.dump(autoC,autoCFile)
+            if event.type == pygame.QUIT:
+                with open('rookPriceMultiply.txt','w') as rookPriceMultiplyFile:
+                    json.dump(rookPriceMultiply,rookPriceMultiplyFile)
+            if event.type == pygame.QUIT:
+                with open('rookLevel.txt','w') as rookLevelFile:
+                    json.dump(rookLevel,rookLevelFile)
+            if event.type == pygame.QUIT:
+                with open('rookPrice.txt','w') as rookPriceFile:
+                    json.dump(rookPrice,rookPriceFile)
+            if event.type == pygame.QUIT:
+                with open('pawnPriceMultiply.txt','w') as pawnPriceMultiplyFile:
+                    json.dump(pawnPriceMultiply,pawnPriceMultiplyFile)
+            if event.type == pygame.QUIT:
+                with open('pawnLevel.txt','w') as pawnLevelFile:
+                    json.dump(pawnLevel,pawnLevelFile)
+            if event.type == pygame.QUIT:
+                with open('pawnPrice.txt','w') as pawnPriceFile:
+                    json.dump(pawnPrice,pawnPriceFile)
+            if event.type == pygame.QUIT:
+                with open('multiply.txt','w') as multiplyFile:
+                    json.dump(multiply,multiplyFile)
+            if event.type == pygame.QUIT:
+                with open('bishopLevel.txt','w') as bishopLevelFile:
+                    json.dump(bishopLevel,bishopLevelFile)
+            if event.type == pygame.QUIT:
+                with open('bishopPriceMultiply.txt','w') as bishopPriceMultiplyFile:
+                    json.dump(bishopPriceMultiply,bishopPriceMultiplyFile)
+            if event.type == pygame.QUIT:
+                with open('bishopPrice.txt','w') as bishopPriceFile:
+                    json.dump(bishopPrice,bishopPriceFile)
+            if event.type == pygame.QUIT:
+                with open('knightPrice.txt','w') as knightPriceFile:
+                    json.dump(knightPrice,knightPriceFile)
+            if event.type == pygame.QUIT:
+                with open('knightLevel.txt','w') as knightLevelFile:
+                    json.dump(knightLevel,knightLevelFile)
+            if event.type == pygame.QUIT:
+                with open('knightPriceMultiply.txt','w') as knightPriceMultiplyFile:
+                    json.dump(knightPriceMultiply,knightPriceMultiplyFile)
+            if event.type == pygame.QUIT:
+                with open('pawnMultiply.txt','w') as pawnMultiplyFile:
+                    json.dump(pawnMultiply,pawnMultiplyFile)
                 running = False      
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -113,7 +202,7 @@ def main_loop():
 
                     screenCopy = screen.copy()
                     screen.blit(clickclick, (x, y-40))
-                    waitFor(150)
+                    waitFor(100)
                     screen.blit(screenCopy, (0,0))
 
 
@@ -163,7 +252,24 @@ def main_loop():
                         if knightLevel%2==0:
                             knightPriceMultiply=knightPriceMultiply+0.3
                         knightPrice=knightPrice*knightPriceMultiply
-
+                if reset.get_rect().collidepoint(x-700,y-700):
+                    multiply=1
+                    pawnPrice = 20
+                    pawnLevel= 0
+                    pawnPriceMultiply = 1.3
+                    rookPrice=200
+                    rookLevel = 0
+                    rookPriceMultiply=1.5
+                    autoC = 0
+                    autoCmultiply = 1
+                    pawnMultiply = 1
+                    bishopPrice = 800
+                    bishopLevel = 0
+                    bishopPriceMultiply = 1.8
+                    knightPrice = 2200
+                    knightLevel = 0
+                    knightPriceMultiply = 3
+                    check=0
                     
                  
     
