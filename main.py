@@ -99,6 +99,23 @@ def waitFor(waitTime):
         pygame.event.pump()
         screen.blit(screenCopy, (0,0))
         pygame.display.flip()
+def formating(num):
+    num = float('{:.3g}'.format(num))
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num /= 1000.0
+    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+def formatingAutoC(num):
+    num=num*10
+    num = float('{:.3g}'.format(num))
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num /= 1000.0
+    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+
+
 
 def AutoChecks():
     global check
@@ -275,17 +292,17 @@ def main_loop():
     
                 
 
-        DrawText("   You made " + str(f'{check:.2f}') + " checks   ", black, white, X/2-100, 50, 20)
-        DrawText("Buy pawn for  " + str(f'{pawnPrice:.2f}') + " checks(+1 to click power, *3 every 10lvl)", black,backgroundColour, 330 , 420, 13)
+        DrawText("     You made " + str(f'{formating(check)}') + " checks     ", black, white, X/2-100, 50, 20)
+        DrawText("Buy pawn for  " + str(f'{formating(pawnPrice)}') + " checks(+1 to click power, *3 every 10lvl)", black,backgroundColour, 330 , 420, 13)
         DrawText("You have " + str(f'{pawnLevel:.2f}') + " pawns", black,backgroundColour, 330 , 440, 13)
-        DrawText("Buy rook for  " + str(f'{rookPrice:.2f}') + " checks(3check/sec, *2 every 10lvl)", black,backgroundColour, 330 , 520, 13)
+        DrawText("Buy rook for  " + str(f'{formating(rookPrice)}') + " checks(3check/sec, *2 every 10lvl)", black,backgroundColour, 330 , 520, 13)
         DrawText("You have " + str(f'{rookLevel:.2f}') + " rooks", black,backgroundColour, 330 , 540, 13)
-        DrawText("Buy bishop for  " + str(f'{bishopPrice:.2f}') + " checks(10checks/sec, *2.5 every 10lvl)", black,backgroundColour, 330 , 620, 13)
+        DrawText("Buy bishop for  " +str(f'{formating(bishopPrice)}')  + " checks(10checks/sec, *2.5 every 10lvl)", black,backgroundColour, 330 , 620, 13)
         DrawText("You have " + str(f'{bishopLevel:.2f}') + " bishops", black,backgroundColour, 330 , 640, 13)
-        DrawText("Buy knight for  " + str(f'{knightPrice:.2f}') + " checks(*2 click power, *2checks/sec)", black,backgroundColour, 330 , 720, 13)
+        DrawText("Buy knight for  " + str(f'{formating(knightPrice)}') + " checks(*2 click power, *2checks/sec)", black,backgroundColour, 330 , 720, 13)
         DrawText("You have " + str(f'{knightLevel:.2f}') + " knights", black,backgroundColour, 330 , 740, 13)       
-        DrawText("You have " + str(f'{multiply:.2f}') + " click power", black,backgroundColour, 660 , 50, 16)
-        DrawText("You have " + str(f'{autoC*10:.2f}') + " checks per second", black,backgroundColour, 660 , 80, 16)
+        DrawText("You have " + str(f'{formating(multiply)}')  + " click power", black,backgroundColour, 660 , 50, 16)
+        DrawText("You have " + str(f'{formatingAutoC(autoC)}')  + " checks per second", black,backgroundColour, 660 , 80, 16)
         
 
 
